@@ -9,8 +9,8 @@ export interface DameJIdloResponse {
 export interface Data {
   available_count: number;
   returned_count: number;
-  events: any[];
-  close_reasons: any[];
+  events: unknown[];
+  close_reasons: unknown[];
   banner: string;
   items: Restaurant[];
   num_platform_delivery: number;
@@ -25,13 +25,13 @@ export interface Data {
 
 export interface Aggregations {
   cuisines: FoodCharacteristicElement[];
-  events: any[];
-  discount_labels: any[];
-  discounts: any[];
-  close_reasons: any[];
+  events: unknown[];
+  discount_labels: unknown[];
+  discounts: unknown[];
+  close_reasons: unknown[];
   banner: string;
   location_event: null;
-  partners: any[];
+  partners: unknown[];
   payment_types: PaymentType[];
   foodCharacteristics: FoodCharacteristicElement[];
   quickFilters: FoodCharacteristicElement[];
@@ -61,7 +61,7 @@ export interface PaymentType {
   count: number;
 }
 
-export interface DiscountLabelsMetadata {}
+export type DiscountLabelsMetadata = unknown;
 
 export interface Restaurant {
   id: number;
@@ -99,7 +99,7 @@ export interface Restaurant {
   minimum_order_amount: number;
   minimum_pickup_time: number;
   name: string;
-  payment_types: any[];
+  payment_types: unknown[];
   post_code: string;
   primary_cuisine_id: number;
   rating: number;
@@ -122,9 +122,9 @@ export interface Restaurant {
   website: string;
   has_online_payment: boolean;
   discounts_info: DiscountsInfo[];
-  discounts: any[];
+  discounts: unknown[];
   vendor_legal_information: VendorLegalInformation;
-  disclaimers: any[];
+  disclaimers: unknown[];
   customer_phone: string;
   vertical_type_ids: string[];
   delivery_provider: string;
@@ -147,7 +147,7 @@ export interface Restaurant {
   is_vat_visible: boolean;
   is_voucher_enabled: boolean;
   ncr_pricing_model: string;
-  tag_ids: any[];
+  tag_ids: unknown[];
 }
 
 export interface Chain {
@@ -189,9 +189,9 @@ export interface DiscountsInfo {
 export interface Metadata {
   has_discount: boolean;
   timezone: string;
-  close_reasons: any[];
+  close_reasons: unknown[];
   available_in: null;
-  events: any[];
+  events: unknown[];
   is_delivery_available: boolean;
   is_pickup_available: boolean;
   is_dine_in_available: boolean;

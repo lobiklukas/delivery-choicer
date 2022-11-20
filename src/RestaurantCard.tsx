@@ -76,7 +76,7 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
           {restaurant.metadata.close_reasons.length > 1 && (
             <p>
               Close reasons:{" "}
-              {restaurant.metadata.close_reasons.map((s) => (
+              {(restaurant.metadata.close_reasons as string[]).map((s) => (
                 <p key={s}>{s}</p>
               ))}
             </p>
