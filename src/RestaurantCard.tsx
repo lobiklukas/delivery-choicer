@@ -23,7 +23,7 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
   return (
     <>
       <div className="card w-auto max-w-[300px] bg-base-200 shadow-xl">
-        <figure>
+        <figure className="h-[200px] w-[300px]">
           <Image
             src={restaurant.hero_image}
             alt="hero"
@@ -43,7 +43,8 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
           </h2>
           <p className="flex gap-2">
             <UilStar />
-            {restaurant.rating} / {restaurant.review_number}
+            {restaurant.avg_rating ?? restaurant.rating} /{" "}
+            {restaurant.review_number}
           </p>
           <p className="flex gap-2">
             <UilAt />

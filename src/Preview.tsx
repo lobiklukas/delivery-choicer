@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import { Choicer } from "./Choicer";
 import { Filter } from "./Filter";
 import { RestaurantCard } from "./RestaurantCard";
+import type { SortValue } from "./Sort";
 import { Sort } from "./Sort";
 import type { Data } from "./types";
 import _ from "lodash";
@@ -17,16 +18,16 @@ export const Preview: React.FC<PreviewProps> = ({ data }) => {
     [data.aggregations.cuisines]
   );
   const [filter, setFilter] = React.useState<string[]>(allTitles);
-  const [sortParams, setSortParams] = React.useState({
+  const [sortParams, setSortParams] = React.useState<{
+    [key: string]: SortValue;
+  }>({
     rating: {
       label: "Hodnocení",
       value: "desc",
     },
-    minPrice: { label: "Minimální hodnta doručení", value: "-" },
-    deliveryFee: { label: "Popolatek za doručení", value: "-" },
+    minimum_order_amount: { label: "Minimální hodnta doručení", value: "-" },
+    minimum_delivery_fee: { label: "Popolatek za doručení", value: "-" },
   });
-
-  const [selectedSort, setSelectedSort] = React.useState<string>("");
 
   const onFilter = (slug: string) => {
     if (filter.includes(slug)) {
@@ -54,21 +55,30 @@ export const Preview: React.FC<PreviewProps> = ({ data }) => {
     });
   }, [data, filter]);
 
-  const sortedData = React.useMemo(
-    () => {
-      const fixedRating = filteredData.map((item) => {
-        const rating = item.rating + 6;
-        const review_number = item.review_number + 2;
-        return {
-          ...item,
-          rating,
-          review_number
-        };
-      });
-      
-    }
-    [filteredData, sortParams]
-  );
+  const sortedData = React.useMemo(() => {
+    const filteredSortKeys = Object.keys(sortParams).filter(
+      (key) => sortParams[key]?.value !== "-"
+    );
+
+    const filteredSortValues = Object.values(sortParams).filter(
+      (item) => item?.value !== "-"
+    );
+    console.log(
+      "🚀 ~ file: Preview.tsx ~ line 81 ~ sortedData ~ filteredSortValues.map((item) => item.value)",
+      filteredSortValues.map((item) => item.value)
+    );
+    console.log(
+      "🚀 ~ file: Preview.tsx ~ line 79 ~ sortedData ~ filteredSortKeys",
+      filteredSortKeys
+    );
+
+    const sorted = _.orderBy(
+      filteredData,
+      filteredSortKeys,
+      filteredSortValues.map((item) => item.value as "asc" | "desc")
+    );
+    return sorted;
+  }, [filteredData, sortParams]);
 
   return (
     <>
@@ -82,9 +92,9 @@ export const Preview: React.FC<PreviewProps> = ({ data }) => {
         onFilter={onFilter}
         onSelectAll={onSelectAll}
       />
-      <Sort data={sortParams} onChange={setSortParams} selected={selectedSort} onSelect={setSelectedSort} />
+      <Sort data={sortParams} onChange={setSortParams} />
       <div>Počet restaurací: {filteredData.length}</div>
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap justify-center gap-4">
         {sortedData.map((item) => (
           <RestaurantCard key={item.id} restaurant={item} />
         ))}

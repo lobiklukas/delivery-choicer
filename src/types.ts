@@ -65,6 +65,7 @@ export interface DiscountLabelsMetadata {}
 
 export interface Restaurant {
   id: number;
+  avg_rating?: string;
   code: string;
   accepts_instructions: boolean;
   address: string;
