@@ -6,7 +6,23 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "lint-staged": "lint-staged",
+    "prettier": "prettier --write --ignore-unknown .",
+    "prettier:check": "prettier --check --ignore-unknown .",
+    "start": "next start",
+    "test": "yarn prettier:check && yarn lint"
+  },
+  "git": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "semi": true,
+    "trailingComma": "all",
+    "singleQuote": true
   },
   "dependencies": {
     "@iconscout/react-unicons": "^1.1.6",
@@ -16,23 +32,23 @@
     "next": "^13.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "zod": "^3.18.0"
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.189",
-    "@types/node": "^18.0.0",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
-    "autoprefixer": "^10.4.7",
-    "eslint": "^8.26.0",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.28.0",
     "eslint-config-next": "^13.0.4",
-    "postcss": "^8.4.14",
+    "postcss": "^8.4.19",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
-    "tailwindcss": "^3.2.0",
-    "typescript": "^4.8.4"
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.3"
   },
   "ct3aMetadata": {
     "initVersion": "6.10.1"

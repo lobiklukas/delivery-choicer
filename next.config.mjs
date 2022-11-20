@@ -16,14 +16,6 @@ const config = {
   experimental: { appDir: true },
   images: {
     domains: ["images.deliveryhero.io"],
-    // remotePatterns: [
-    //   {
-    //     protocol: "https",
-    //     hostname: "images.deliveryhero.io",
-    //     port: "",
-    //     pathname: "image/fd-cz/LH/**",
-    //   },
-    // ],
   },
 };
 export default config;

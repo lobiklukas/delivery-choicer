@@ -63,14 +63,6 @@ export const Preview: React.FC<PreviewProps> = ({ data }) => {
     const filteredSortValues = Object.values(sortParams).filter(
       (item) => item?.value !== "-"
     );
-    console.log(
-      "🚀 ~ file: Preview.tsx ~ line 81 ~ sortedData ~ filteredSortValues.map((item) => item.value)",
-      filteredSortValues.map((item) => item.value)
-    );
-    console.log(
-      "🚀 ~ file: Preview.tsx ~ line 79 ~ sortedData ~ filteredSortKeys",
-      filteredSortKeys
-    );
 
     const sorted = _.orderBy(
       filteredData,
