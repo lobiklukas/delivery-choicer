@@ -1,12 +1,13 @@
-"use client";
-import React from "react";
-import type { FoodCharacteristicElement } from "./types";
+'use client';
+import React from 'react';
+import type { FoodCharacteristicElement } from './types';
 
 interface FilterProps {
   data: FoodCharacteristicElement[];
   filter: string[];
   onFilter: (id: string) => void;
   onSelectAll: (select: boolean) => void;
+  setOnlyAvailable: (onlyAvailable: boolean) => void;
 }
 
 export const Filter: React.FC<FilterProps> = ({
@@ -14,6 +15,7 @@ export const Filter: React.FC<FilterProps> = ({
   onFilter,
   onSelectAll,
   filter,
+  setOnlyAvailable,
 }) => {
   return (
     <>
@@ -26,6 +28,15 @@ export const Filter: React.FC<FilterProps> = ({
           className="checkbox-success checkbox mr-2"
         />
         Zobrazit vše
+      </label>
+      <label className="label cursor-pointer justify-start">
+        <input
+          type="checkbox"
+          defaultChecked
+          onChange={(e) => setOnlyAvailable(e.target.checked)}
+          className="checkbox-success checkbox mr-2"
+        />
+        Dostupné
       </label>
       <div className="divider"></div>
       <div className="flex flex-wrap gap-2">

@@ -65,7 +65,7 @@ export type DiscountLabelsMetadata = unknown;
 
 export interface Restaurant {
   id: number;
-  avg_rating?: string;
+  avg_rating?: string | number;
   code: string;
   accepts_instructions: boolean;
   address: string;
